@@ -1,10 +1,14 @@
 class CommentsController < ApplicationController
-    def new
-        @comments = Comment.new
-    end
     def create
-        @comments = Comment.new
-        @comments["body"] = params["comment"]["body"]
-        @comments.save
+        if @current_user
+        @comment = Comment.new
+        @comment["body"] = params["comment"]["body"]
+        @comment["user_id"] = @current_user["id"]
+        @comment["post_id"] = params["comment"]["post_id"]
+        @comment.save
+        else
+        flash["notice"] = "Login first."
+        end
+      redirect_to "/posts"
     end
 end
