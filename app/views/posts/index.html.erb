@@ -19,34 +19,28 @@
       <% end %>
 
       <p><%= post["body"] %></p>
-    <h5>
-        Comments
-    </h5>
+    
  
      <%= form_with :model => @comment do |form| %>
-    <div class="mb-3">
       <%= form.label "Write Comment", :class => "form-label" %>
       <%= form.text_field "body", :class => "form-control" %>
-    </div>
       <%= form.hidden_field "post_id", :value => post["id"] %>
     <%= form.submit "Create Comment", :class => "btn btn-primary" %>
   <% end %>
     </p>
       
-    </div>
-<h6>Comments</h6>
+<h5>Comments</h5>
 <% for comm in @comments %>
-  <div class="mb-3">
     <% if comm["post_id"] == post["id"] %>
     <% author = User.find_by({ "id" => comm["user_id"] }) %>
         <% if author %>
-          <%= author["first_name"] %>
+          <h6><%= author["first_name"] %> <%=author["last_name"]%></h6>
         <% end %>
    <p> <%= comm["body"] %></p>
        
  <% end %>
- 
- <% end %>
- 
-<% end %>
 
+ <% end %>
+  </div>
+<% end %>
+ </div>
