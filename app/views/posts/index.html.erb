@@ -22,14 +22,13 @@
     
  
      <%= form_with :model => @comment do |form| %>
-      <%= form.label "Write Comment", :class => "form-label" %>
       <%= form.text_field "body", :class => "form-control" %>
       <%= form.hidden_field "post_id", :value => post["id"] %>
-    <%= form.submit "Create Comment", :class => "btn btn-primary" %>
+    <%= form.submit "Add Comment", :class => "btn btn-primary" %>
   <% end %>
     </p>
       
-<h5>Comments</h5>
+<h5><u>Comments</u></h5>
 <% for comm in @comments %>
     <% if comm["post_id"] == post["id"] %>
     <% author = User.find_by({ "id" => comm["user_id"] }) %>
